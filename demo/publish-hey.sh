@@ -1,7 +1,8 @@
 #!/bin/bash
-cd ../capsule-ctl
-CAPSULE_REGISTRY_ADMIN_TOKEN="AZERTYUIOP" \
-go run main.go publish \
--wasmFile=../wasm_faas/hey/hey.wasm -wasmInfo=wip \
--wasmOrg=k33g -wasmName=hey -wasmTag=0.0.0 \
--registryUrl=http://localhost:4999
+#!/bin/bash
+curl -X POST http://localhost:4999/upload/k33g/hey/0.0.1 \
+  -F "file=@./hey/hey.wasm" \
+  -F "info=hey function from @k33g" \
+  -H "CAPSULE_REGISTRY_ADMIN_TOKEN: AZERTYUIOP" \
+  -H "Content-Type: multipart/form-data"
+

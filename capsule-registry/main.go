@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/bots-garden/capsule/capsule-registry/registry"
-	"github.com/bots-garden/capsule/commons"
+	"github.com/bots-garden/capsule-registry/registry"
+	"github.com/bots-garden/capsule-registry/commons"
 	"os"
 )
 
@@ -25,7 +25,7 @@ func main() {
 	}
 
 	if args[0] == "version" {
-		fmt.Println(commons.CapsuleVersion())
+		fmt.Println(commons.CapsuleRegistryVersion())
 	} else {
 		//flags
 		httpPortPtr := flag.String("httpPort", "8080", "http port")

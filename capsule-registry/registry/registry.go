@@ -2,7 +2,7 @@ package registry
 
 import (
 	"fmt"
-	"github.com/bots-garden/capsule/commons"
+	"github.com/bots-garden/capsule-registry/commons"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
@@ -207,11 +207,11 @@ func Serve(httpPort, filesPath, crt, key string) {
 	if crt != "" {
 		// certs/procyon-registry.local.crt
 		// certs/procyon-registry.local.key
-		fmt.Println("💊 Capsule (", commons.CapsuleVersion(), ") 📦 Wasm Registry is listening on:", httpPort, "🔐🌍")
+		fmt.Println("💊 Capsule (", commons.CapsuleRegistryVersion(), ") 📦 Wasm Registry is listening on:", httpPort, "🔐🌍")
 
 		router.RunTLS(":"+httpPort, crt, key)
 	} else {
-		fmt.Println("💊 Capsule (", commons.CapsuleVersion(), ") 📦 Wasm Registry is listening on:", httpPort, "🌍")
+		fmt.Println("💊 Capsule (", commons.CapsuleRegistryVersion(), ") 📦 Wasm Registry is listening on:", httpPort, "🌍")
 		router.Run(":" + httpPort)
 	}
 

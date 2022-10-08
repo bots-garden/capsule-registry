@@ -1,59 +1,59 @@
 #!/bin/bash
-LAST_CAPSULE_VERSION="v0.2.6"
+LAST_CAPSULE_REGISTRY_VERSION="v0.0.0"
 echo "System: ${OSTYPE} $(uname -m)"
 
-if [ -z "$CAPSULE_PATH" ]
+if [ -z "$CAPSULE_REGISTRY_PATH" ]
 then
-    CAPSULE_PATH="$HOME/.local/bin"
+    CAPSULE_REGISTRY_PATH="$HOME/.local/bin"
 fi
 
 if [[ $1 = "help" ]]
 then
     echo "usage: $0"
-    echo "The script will detect the OS & ARCH and use the last version of capsule (${LAST_CAPSULE_VERSION})"
+    echo "The script will detect the OS & ARCH and use the last version of capsule (${LAST_CAPSULE_REGISTRY_VERSION})"
     echo "You can force the values by setting these environment variables:"
-    echo "- CAPSULE_OS (linux, darwin)"
-    echo "- CAPSULE_ARCH (amd64, arm64)"
-    echo "- CAPSULE_VERSION (default: ${LAST_CAPSULE_VERSION})"
-    echo "- CAPSULE_PATH (default: ${CAPSULE_PATH})"
+    echo "- CAPSULE_REGISTRY_OS (linux, darwin)"
+    echo "- CAPSULE_REGISTRY_ARCH (amd64, arm64)"
+    echo "- CAPSULE_REGISTRY_VERSION (default: ${LAST_CAPSULE_REGISTRY_VERSION})"
+    echo "- CAPSULE_REGISTRY_PATH (default: ${CAPSULE_REGISTRY_PATH})"
     exit 0
 fi
 
-if [ -z "$CAPSULE_VERSION" ]
+if [ -z "$CAPSULE_REGISTRY_VERSION" ]
 then
-    CAPSULE_VERSION=$LAST_CAPSULE_VERSION
+    CAPSULE_REGISTRY_VERSION=$LAST_CAPSULE_REGISTRY_VERSION
 fi
 
-if [ -z "$CAPSULE_OS" ]
+if [ -z "$CAPSULE_REGISTRY_OS" ]
 then
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-      CAPSULE_OS="linux"
+      CAPSULE_REGISTRY_OS="linux"
     elif [[ "$OSTYPE" == "darwin"* ]]; then
-      CAPSULE_OS="darwin"
+      CAPSULE_REGISTRY_OS="darwin"
     else
-      CAPSULE_OS="linux"
+      CAPSULE_REGISTRY_OS="linux"
     fi
 fi
 
-if [ -z "$CAPSULE_ARCH" ]
+if [ -z "$CAPSULE_REGISTRY_ARCH" ]
 then
     if [[ "$(uname -m)" == "x86_64" ]]; then
-      CAPSULE_ARCH="amd64"
+      CAPSULE_REGISTRY_ARCH="amd64"
     elif [[ "$(uname -m)" == "arm64" ]]; then
-      CAPSULE_ARCH="arm64"
+      CAPSULE_REGISTRY_ARCH="arm64"
     elif [[ $(uname -m) == "aarch64" ]]; then
-      CAPSULE_ARCH="arm64"
+      CAPSULE_REGISTRY_ARCH="arm64"
     else
-      CAPSULE_ARCH="amd64"
+      CAPSULE_REGISTRY_ARCH="amd64"
     fi
 fi
 
-CAPSULE_MODULE="capsule-registry"
+MODULE="capsule-REGISTRY_"
 
 
-echo "Installing ${CAPSULE_MODULE}..."
-wget https://github.com/bots-garden/capsule/releases/download/${CAPSULE_VERSION}/${CAPSULE_MODULE}-${CAPSULE_VERSION}-${CAPSULE_OS}-${CAPSULE_ARCH}.tar.gz
-tar -zxf ${CAPSULE_MODULE}-${CAPSULE_VERSION}-${CAPSULE_OS}-${CAPSULE_ARCH}.tar.gz --directory ${CAPSULE_PATH}
-rm ${CAPSULE_MODULE}-${CAPSULE_VERSION}-${CAPSULE_OS}-${CAPSULE_ARCH}.tar.gz
+echo "Installing ${MODULE}..."
+wget https://github.com/bots-garden/capsule/releases/download/${CAPSULE_REGISTRY_VERSION}/${MODULE}-${CAPSULE_REGISTRY_VERSION}-${CAPSULE_REGISTRY_OS}-${CAPSULE_REGISTRY_ARCH}.tar.gz
+tar -zxf ${MODULE}-${CAPSULE_REGISTRY_VERSION}-${CAPSULE_REGISTRY_OS}-${CAPSULE_REGISTRY_ARCH}.tar.gz --directory ${CAPSULE_REGISTRY_PATH}
+rm ${MODULE}-${CAPSULE_REGISTRY_VERSION}-${CAPSULE_REGISTRY_OS}-${CAPSULE_REGISTRY_ARCH}.tar.gz
 
-echo "Capsule[module: ${CAPSULE_MODULE}] $(capsule version) is installed 🎉"
+echo "Capsule[module: ${MODULE}] $(capsule version) is installed 🎉"
