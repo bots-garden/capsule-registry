@@ -48,8 +48,7 @@ then
     fi
 fi
 
-MODULE="capsule-REGISTRY_"
-
+MODULE="capsule-registry"
 
 echo "Installing ${MODULE}..."
 wget https://github.com/bots-garden/capsule/releases/download/${CAPSULE_REGISTRY_VERSION}/${MODULE}-${CAPSULE_REGISTRY_VERSION}-${CAPSULE_REGISTRY_OS}-${CAPSULE_REGISTRY_ARCH}.tar.gz
